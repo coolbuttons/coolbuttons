@@ -1,0 +1,130 @@
+import React from 'react';
+
+const Footer: React.FC = () => {
+  return (
+    <footer className="border-t border-white/5 bg-black/40 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
+          <div>
+            <h3 className="font-bold text-lg text-white mb-3">Cool Buttons</h3>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              400+ beautifully designed button components. Copy, paste, and customize with ease.
+            </p>
+          </div>
+
+          {/* Collection */}
+          <div>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Collections</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="/buttons/essential"
+                  className="text-zinc-400 hover:text-orange-400 transition-colors"
+                >
+                  Essential
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/buttons/gradient"
+                  className="text-zinc-400 hover:text-orange-400 transition-colors"
+                >
+                  Gradient
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/buttons/animated"
+                  className="text-zinc-400 hover:text-orange-400 transition-colors"
+                >
+                  Animated
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/buttons/glassmorphic"
+                  className="text-zinc-400 hover:text-orange-400 transition-colors"
+                >
+                  Glassmorphic
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Resources</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="/docs" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="/showcase" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  Showcase
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  About
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Features */}
+          <div>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Features</h4>
+            <ul className="space-y-2 text-sm text-zinc-400">
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>
+                Tailwind CSS
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>
+                React Ready
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>
+                Copy & Paste
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>
+                Dark Mode
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/5 pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-zinc-500">
+              © 2026 Cool Buttons. All rights reserved. | Made with ❤️
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="/about" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
+                About
+              </a>
+              <a href="/pricing" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
+                Pricing
+              </a>
+              <a href="#" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
+                Terms of Service
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
