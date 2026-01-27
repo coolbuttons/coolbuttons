@@ -135,9 +135,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
                 </div>
 
                 <div className="mt-8 md:mt-12 text-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-50 dark:bg-zinc-800/50 rounded-full mb-2 md:mb-4">
-                    <div className={`w-1.5 h-1.5 rounded-full ${isHovered ? 'bg-zinc-400' : 'bg-orange-500 animate-pulse'}`}></div>
-                  </div>
                   <h3 className="text-lg md:text-2xl font-black text-zinc-900 dark:text-white tracking-tighter mb-1 uppercase">
                     {currentDesign.name}
                   </h3>
@@ -155,10 +152,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
       <div className="relative py-12 md:py-20 border-y border-zinc-100 dark:border-zinc-900 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
-            { label: "UNIQUE STYLES", value: "130+" },
+            { label: "UNIQUE STYLES", value: "200+" },
             { label: "WEEKLY DOWNLOADS", value: "2.5K" },
-            { label: "GITHUB STARS", value: "12K" },
-            { label: "DESIGNERS", value: "50K+" }
+            { label: "GITHUB STARS", value: "1K" },
+            { label: "DESIGNERS", value: "50+" }
           ].map((stat, i) => (
             <div key={i} className="text-center md:text-left">
               <span className="block text-3xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter mb-1">
