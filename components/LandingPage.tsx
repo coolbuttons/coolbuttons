@@ -8,12 +8,14 @@ import {
   MessageSquare, ChevronDown, Github, Twitter,
   Cpu, Layout, Globe
 } from 'lucide-react';
+import Claymorphic from './buttons/Claymorphic';
 
 interface LandingPageProps {
   onExplore: () => void;
+  onProKit?: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onProKit }) => {
   const [currentStyleIdx, setCurrentStyleIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -84,7 +86,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
           </div>
           <button 
             onClick={onExplore}
-            className="px-4 md:px-6 py-2 md:py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[10px] font-black uppercase tracking-widest rounded-lg md:rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-zinc-200/50 dark:shadow-none"
+            className="px-4 md:px-6 py-2 md:py-3 bg-orange-500 text-white text-[10px] font-black uppercase tracking-widest rounded-lg md:rounded-xl shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 transition-all"
           >
             Explore
           </button>
@@ -107,12 +109,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <button 
                 onClick={onExplore}
-                className="group w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-orange-500 text-white font-black uppercase tracking-widest text-[10px] rounded-xl md:rounded-2xl shadow-2xl shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all flex items-center justify-center gap-4"
+                className="group px-9 sm:px-8 md:px-12 py-4 sm:py-5 md:py-5 bg-orange-500 text-white font-black uppercase tracking-widest text-[10px] rounded-[2rem] shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 active:scale-95 transition-all flex items-center justify-center gap-4"
               >
                 Go to Library
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white font-black uppercase tracking-widest text-[10px] rounded-xl md:rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm">
+              <button 
+                onClick={onProKit}
+                className="px-9 sm:px-8 md:px-12 py-4 sm:py-5 md:py-5 bg-white-500 text-white font-black uppercase tracking-widest text-[10px] rounded-[2rem] border border-indigo-400/30 shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 active:scale-95 transition-all">
                 Get the Pro Kit
               </button>
             </div>
@@ -349,13 +353,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
               </div>
             </div>
 
-            <button 
-              onClick={onExplore}
-              className="group mt-10 px-8 md:px-12 py-4 md:py-5 bg-orange-500 text-white font-black uppercase tracking-widest text-[10px] rounded-xl md:rounded-2xl shadow-2xl shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all flex items-center gap-4"
-            >
-              Explore Showcase
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="flex justify-center md:justify-start">
+              <button 
+                onClick={onExplore}
+                className="group mt-10 px-8 md:px-12 py-4 md:py-5 bg-orange-500 text-white font-black uppercase tracking-widest text-[10px] rounded-[2rem] shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 active:scale-95 transition-all flex items-center gap-4"
+              >
+                Explore Showcase
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -425,14 +431,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button 
                 onClick={onExplore}
-                className="group/btn w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 bg-orange-500 hover:bg-orange-600 text-white font-black uppercase tracking-wider text-xs rounded-lg md:rounded-xl shadow-lg hover:shadow-orange-500/50 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+                className="group/btn w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 bg-orange-500 text-white font-black uppercase tracking-wider text-xs rounded-[2rem] shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 active:scale-95 transition-all flex items-center justify-center gap-2"
               >
                 Explore Library
                 <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
               </button>
               <a 
                 href="mailto:devchauhan.developer@gmail.com"
-                className="w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-orange-500/50 text-white font-black uppercase tracking-wider text-xs rounded-lg md:rounded-xl transition-all flex items-center justify-center gap-2 group/btn"
+                className="w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 bg-white-500/20 hover:bg-orange-500/30 border border-orange-400/40 text-white font-black uppercase tracking-wider text-xs rounded-[2rem] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.2),inset_2px_2px_4px_rgba(255,255,255,0.1)] transition-all flex items-center justify-center gap-2 group/btn"
               >
                 Contact
                 <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />

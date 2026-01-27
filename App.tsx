@@ -13,9 +13,10 @@ import About from './components/About';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 import Contact from './components/Contact';
+import ProKit from './components/ProKit';
 import { buttonLibrary } from './data/buttonLib';
 import { ButtonDesign, ButtonCategory } from './types';
-import { Search, Command } from 'lucide-react';
+import { Search, Command, ChevronDown } from 'lucide-react';
 
 // Helper function to convert button name to URL slug
 const toSlug = (name: string): string => {
@@ -31,7 +32,7 @@ const findButtonBySlug = (slug: string): ButtonDesign | null => {
   return buttonLibrary.find(btn => toSlug(btn.name) === slug) || null;
 };
 
-type ViewType = 'landing' | 'buttons' | 'button' | 'documentation' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact';
+type ViewType = 'landing' | 'buttons' | 'button' | 'documentation' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewType>('landing');
@@ -40,6 +41,9 @@ const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ButtonCategory | 'All'>('All');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displayCount, setDisplayCount] = useState(30); // Show 12 buttons initially
+
+  const LOAD_MORE_COUNT = 30; // Load 12 more on each "Show More"
 
   // Handle URL navigation on mount and when URL changes
   useEffect(() => {
@@ -90,6 +94,8 @@ const App: React.FC = () => {
         setView('privacy');
       } else if (segments[0] === 'contact') {
         setView('contact');
+      } else if (segments[0] === 'prokit') {
+        setView('prokit');
       }
       window.scrollTo(0, 0);
     };
@@ -113,6 +119,7 @@ const App: React.FC = () => {
   }, []);
 
   const filteredButtons = useMemo(() => {
+    setDisplayCount(30); // Reset display count when filter changes
     return buttonLibrary.filter(btn => {
       const searchStr = searchTerm.toLowerCase();
       const matchesSearch = 
@@ -159,6 +166,8 @@ const App: React.FC = () => {
           window.history.pushState({}, '', '/privacy');
         } else if (newView === 'contact') {
           window.history.pushState({}, '', '/contact');
+        } else if (newView === 'prokit') {
+          window.history.pushState({}, '', '/prokit');
         }
         setView(newView);
         if (design) setSelectedButton(design);
@@ -186,6 +195,8 @@ const App: React.FC = () => {
         window.history.pushState({}, '', '/privacy');
       } else if (newView === 'contact') {
         window.history.pushState({}, '', '/contact');
+      } else if (newView === 'prokit') {
+        window.history.pushState({}, '', '/prokit');
       }
       setView(newView);
       if (design) setSelectedButton(design);
@@ -194,7 +205,7 @@ const App: React.FC = () => {
   };
 
   if (view === 'landing') {
-    return <div className="animate-fade-in"><LandingPage onExplore={() => navigateTo('buttons')} /></div>;
+    return <div className="animate-fade-in"><LandingPage onExplore={() => navigateTo('buttons')} onProKit={() => navigateTo('prokit')} /></div>;
   }
 
   if (view === 'button' && selectedButton) {
@@ -236,6 +247,10 @@ const App: React.FC = () => {
     return <div className="animate-fade-in"><Contact onBack={() => navigateTo('landing')} /></div>;
   }
 
+  if (view === 'prokit') {
+    return <div className="animate-fade-in"><ProKit onBack={() => navigateTo('landing')} onExplore={() => navigateTo('buttons')} /></div>;
+  }
+
   return (
     <div className="min-h-screen bg-[#fdfaf5] dark:bg-[#0a0a0a]">
       <Header 
@@ -246,10 +261,10 @@ const App: React.FC = () => {
         <div className="mb-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter mb-2">
-              The <span className="text-orange-500">Deck</span>
+              Button<span className="text-orange-500">Styles</span>
             </h2>
             <p className="text-zinc-500 dark:text-zinc-400 font-medium text-sm">
-              Click any style to view full implementation and use cases.
+              Click on any button to view source code.
             </p>
           </div>
 
@@ -292,15 +307,29 @@ const App: React.FC = () => {
         </div>
 
         {filteredButtons.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-            {filteredButtons.map((design) => (
-              <ButtonCard 
-                key={design.id} 
-                design={design} 
-                onClick={() => navigateTo('button', design)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+              {filteredButtons.slice(0, displayCount).map((design) => (
+                <ButtonCard 
+                  key={design.id} 
+                  design={design} 
+                  onClick={() => navigateTo('button', design)}
+                />
+              ))}
+            </div>
+            
+            {displayCount < filteredButtons.length && (
+              <div className="flex justify-center mt-12">
+                <button 
+                  onClick={() => setDisplayCount(prev => prev + LOAD_MORE_COUNT)}
+                  className="px-8 py-3 bg-white-500 text-white font-black uppercase tracking-widest text-[10px] rounded-[2rem] border border-indigo-400/30 shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 active:scale-95 transition-all flex items-center gap-2"
+                >
+                  Show More
+                  <ChevronDown size={16} />
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center py-32 text-center">
             <Search size={40} className="text-zinc-200 mb-6" />

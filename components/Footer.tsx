@@ -2,8 +2,12 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-white/5 bg-black/40 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="border-t border-white/5 bg-black/40 backdrop-blur-sm relative">
+      {/* Logo on border */}
+      <div className="absolute -top-8 sm:-top-10 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+        <img src="/icon.png" alt="Cool Buttons Logo" className="h-16 w-16 sm:h-20 sm:w-20" />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
