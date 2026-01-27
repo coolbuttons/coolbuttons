@@ -74,9 +74,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
         </div>
         <div className="flex items-center gap-4 md:gap-8">
           <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-zinc-400">
-            <a href="#" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Docs</a>
-            <a href="#" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Showcase</a>
-            <a href="#" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Pricing</a>
+            <a href="/docs" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Docs</a>
+            <a href="/showcase" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Showcase</a>
+            <a href="/pricing" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Pricing</a>
           </div>
           <button 
             onClick={onExplore}
@@ -91,11 +91,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-12 md:pt-24 pb-20 md:pb-32">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-6 md:mb-8">
-              <Sparkles size={12} className="text-orange-500" />
-              <span className="text-[9px] font-black text-orange-500 uppercase tracking-widest">Engineering UI Excellence</span>
-            </div>
-            
             <h2 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-[-0.05em] leading-[0.9] text-zinc-900 dark:text-white mb-6 md:mb-8">
               Beautifully <br />
               <span className="text-zinc-300 dark:text-zinc-800 transition-colors duration-700 hover:text-orange-500">Actionable.</span>
@@ -142,9 +137,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore }) => {
                 <div className="mt-8 md:mt-12 text-center">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-50 dark:bg-zinc-800/50 rounded-full mb-2 md:mb-4">
                     <div className={`w-1.5 h-1.5 rounded-full ${isHovered ? 'bg-zinc-400' : 'bg-orange-500 animate-pulse'}`}></div>
-                    <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400">
-                      {isHovered ? 'PAUSED' : 'AUTO-MORPHING'}
-                    </span>
                   </div>
                   <h3 className="text-lg md:text-2xl font-black text-zinc-900 dark:text-white tracking-tighter mb-1 uppercase">
                     {currentDesign.name}
