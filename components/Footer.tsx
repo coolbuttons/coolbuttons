@@ -67,8 +67,8 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="https://github.com" className="text-zinc-400 hover:text-orange-400 transition-colors">
-                  GitHub
+                <a href="/pricing" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  Pricing
                 </a>
               </li>
               <li>
@@ -109,15 +109,24 @@ const Footer: React.FC = () => {
             <p className="text-xs text-zinc-500">
               © 2026 Cool Buttons. All rights reserved. | Made with ❤️
             </p>
-            <div className="flex items-center gap-6">
-              <a href="/about" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs">
+              <a href="/about" className="text-zinc-400 hover:text-orange-400 transition-colors">
                 About
               </a>
-              <a href="/pricing" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
-                Pricing
+              <a href="/contact" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                Contact
               </a>
-              <a href="#" className="text-xs text-zinc-400 hover:text-orange-400 transition-colors">
+              <a href="https://github.com/devchauhann" className="text-zinc-400 hover:text-orange-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <a href="/privacy" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="text-zinc-400 hover:text-orange-400 transition-colors">
                 Terms of Service
+              </a>
+              <a href="/sitemap.xml" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                Sitemap
               </a>
             </div>
           </div>

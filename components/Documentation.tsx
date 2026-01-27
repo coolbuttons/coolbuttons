@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Code2, Layers, Zap, BookOpen, Github } from 'lucide-react';
+import Footer from './Footer';
 
 interface DocumentationProps {
   onBack: () => void;
@@ -33,7 +34,7 @@ const Documentation: React.FC<DocumentationProps> = ({ onBack }) => {
               <h2 className="text-2xl font-bold">Getting Started</h2>
             </div>
             <p className="text-zinc-400 mb-4">
-              Cool Buttons is a collection of 400+ beautifully designed button components built with Tailwind CSS. Each button includes complete code that you can copy and paste directly into your project.
+              Cool Buttons is a collection of 200+ beautifully designed button components built with Tailwind CSS. Each button includes complete code that you can copy and paste directly into your project.
             </p>
             <ol className="list-decimal list-inside space-y-2 text-zinc-400">
               <li>Browse the button gallery</li>
@@ -140,6 +141,8 @@ export default MyButton;`}</code>
           </section>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

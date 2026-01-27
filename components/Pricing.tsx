@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Check, Zap } from 'lucide-react';
+import Footer from './Footer';
 
 interface PricingProps {
   onBack: () => void;
@@ -141,6 +142,8 @@ const Pricing: React.FC<PricingProps> = ({ onBack }) => {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

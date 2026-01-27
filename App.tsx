@@ -10,6 +10,9 @@ import Documentation from './components/Documentation';
 import Showcase from './components/Showcase';
 import Pricing from './components/Pricing';
 import About from './components/About';
+import Terms from './components/Terms';
+import Privacy from './components/Privacy';
+import Contact from './components/Contact';
 import { buttonLibrary } from './data/buttonLib';
 import { ButtonDesign, ButtonCategory } from './types';
 import { Search, Command } from 'lucide-react';
@@ -28,7 +31,7 @@ const findButtonBySlug = (slug: string): ButtonDesign | null => {
   return buttonLibrary.find(btn => toSlug(btn.name) === slug) || null;
 };
 
-type ViewType = 'landing' | 'buttons' | 'button' | 'documentation' | 'showcase' | 'pricing' | 'about';
+type ViewType = 'landing' | 'buttons' | 'button' | 'documentation' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewType>('landing');
@@ -36,6 +39,7 @@ const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<ButtonCategory | 'All'>('All');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Handle URL navigation on mount and when URL changes
   useEffect(() => {
@@ -80,6 +84,12 @@ const App: React.FC = () => {
         setView('pricing');
       } else if (segments[0] === 'about') {
         setView('about');
+      } else if (segments[0] === 'terms') {
+        setView('terms');
+      } else if (segments[0] === 'privacy') {
+        setView('privacy');
+      } else if (segments[0] === 'contact') {
+        setView('contact');
       }
       window.scrollTo(0, 0);
     };
@@ -143,6 +153,12 @@ const App: React.FC = () => {
           window.history.pushState({}, '', '/pricing');
         } else if (newView === 'about') {
           window.history.pushState({}, '', '/about');
+        } else if (newView === 'terms') {
+          window.history.pushState({}, '', '/terms');
+        } else if (newView === 'privacy') {
+          window.history.pushState({}, '', '/privacy');
+        } else if (newView === 'contact') {
+          window.history.pushState({}, '', '/contact');
         }
         setView(newView);
         if (design) setSelectedButton(design);
@@ -164,6 +180,12 @@ const App: React.FC = () => {
         window.history.pushState({}, '', '/pricing');
       } else if (newView === 'about') {
         window.history.pushState({}, '', '/about');
+      } else if (newView === 'terms') {
+        window.history.pushState({}, '', '/terms');
+      } else if (newView === 'privacy') {
+        window.history.pushState({}, '', '/privacy');
+      } else if (newView === 'contact') {
+        window.history.pushState({}, '', '/contact');
       }
       setView(newView);
       if (design) setSelectedButton(design);
@@ -172,32 +194,46 @@ const App: React.FC = () => {
   };
 
   if (view === 'landing') {
-    return <LandingPage onExplore={() => navigateTo('buttons')} />;
+    return <div className="animate-fade-in"><LandingPage onExplore={() => navigateTo('buttons')} /></div>;
   }
 
   if (view === 'button' && selectedButton) {
     return (
-      <ButtonDetail 
-        design={selectedButton} 
-        onBack={() => navigateTo('buttons')} 
-      />
+      <div className="animate-fade-in">
+        <ButtonDetail 
+          design={selectedButton} 
+          onBack={() => navigateTo('buttons')} 
+        />
+      </div>
     );
   }
 
   if (view === 'documentation') {
-    return <Documentation onBack={() => navigateTo('landing')} />;
+    return <div className="animate-fade-in"><Documentation onBack={() => navigateTo('landing')} /></div>;
   }
 
   if (view === 'showcase') {
-    return <Showcase onBack={() => navigateTo('landing')} />;
+    return <div className="animate-fade-in"><Showcase onBack={() => navigateTo('landing')} /></div>;
   }
 
   if (view === 'pricing') {
-    return <Pricing onBack={() => navigateTo('landing')} />;
+    return <div className="animate-fade-in"><Pricing onBack={() => navigateTo('landing')} /></div>;
   }
 
   if (view === 'about') {
-    return <About onBack={() => navigateTo('landing')} />;
+    return <div className="animate-fade-in"><About onBack={() => navigateTo('landing')} /></div>;
+  }
+
+  if (view === 'terms') {
+    return <div className="animate-fade-in"><Terms onBack={() => navigateTo('landing')} /></div>;
+  }
+
+  if (view === 'privacy') {
+    return <div className="animate-fade-in"><Privacy onBack={() => navigateTo('landing')} /></div>;
+  }
+
+  if (view === 'contact') {
+    return <div className="animate-fade-in"><Contact onBack={() => navigateTo('landing')} /></div>;
   }
 
   return (

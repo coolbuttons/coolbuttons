@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Sparkles, Globe, Users, Trophy } from 'lucide-react';
+import Footer from './Footer';
 
 interface ShowcaseProps {
   onBack: () => void;
@@ -96,6 +97,8 @@ const Showcase: React.FC<ShowcaseProps> = ({ onBack }) => {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
