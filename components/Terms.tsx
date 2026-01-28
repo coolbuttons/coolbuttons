@@ -109,7 +109,7 @@ const Terms: React.FC<TermsProps> = ({ onBack }) => {
             </p>
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 mt-4">
               <p className="text-zinc-300 font-semibold">Email: devchauhan.developer@gmail.com</p>
-              <p className="text-zinc-400">Website: https://coolbuttons.vercel.app</p>
+              <p className="text-zinc-400">Website: https://coolbuttons.dev</p>
             </div>
           </section>
         </div>

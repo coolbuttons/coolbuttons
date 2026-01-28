@@ -33,7 +33,7 @@ const Privacy: React.FC<PrivacyProps> = ({ onBack }) => {
           <section>
             <h2 className="text-2xl font-black mb-4">1. Introduction</h2>
             <p className="text-zinc-400 leading-relaxed">
-              Cool Buttons ("we," "us," "our," or "Company") operates the coolbuttons.vercel.app website (the "Site"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+              Cool Buttons ("we," "us," "our," or "Company") operates the coolbuttons.dev website (the "Site"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
             </p>
           </section>
 
@@ -120,7 +120,7 @@ const Privacy: React.FC<PrivacyProps> = ({ onBack }) => {
             </p>
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
               <p className="text-zinc-300 font-semibold">Email: devchauhan.developer@gmail.com</p>
-              <p className="text-zinc-400">Website: https://coolbuttons.vercel.app</p>
+              <p className="text-zinc-400">Website: https://coolbuttons.dev</p>
               <p className="text-zinc-400">Address: Cool Buttons Project</p>
             </div>
           </section>

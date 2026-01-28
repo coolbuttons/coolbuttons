@@ -6,7 +6,6 @@ import LandingPage from './components/LandingPage';
 import ButtonDetail from './components/ButtonDetail';
 import CommandPalette from './components/CommandPalette';
 import Footer from './components/Footer';
-import Documentation from './components/Documentation';
 import Showcase from './components/Showcase';
 import Pricing from './components/Pricing';
 import About from './components/About';
@@ -14,6 +13,8 @@ import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 import Contact from './components/Contact';
 import ProKit from './components/ProKit';
+import Packages from './components/Packages';
+import Guide from './components/Guide';
 import { buttonLibrary } from './data/buttonLib';
 import { ButtonDesign, ButtonCategory } from './types';
 import { Search, Command, ChevronDown } from 'lucide-react';
@@ -32,7 +33,7 @@ const findButtonBySlug = (slug: string): ButtonDesign | null => {
   return buttonLibrary.find(btn => toSlug(btn.name) === slug) || null;
 };
 
-type ViewType = 'landing' | 'buttons' | 'button' | 'documentation' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit';
+type ViewType = 'landing' | 'buttons' | 'button' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit' | 'packages' | 'guide';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewType>('landing');
@@ -96,6 +97,10 @@ const App: React.FC = () => {
         setView('contact');
       } else if (segments[0] === 'prokit') {
         setView('prokit');
+      } else if (segments[0] === 'packages') {
+        setView('packages');
+      } else if (segments[0] === 'guide') {
+        setView('guide');
       }
       window.scrollTo(0, 0);
     };
@@ -152,8 +157,6 @@ const App: React.FC = () => {
         } else if (newView === 'button' && design) {
           const slug = toSlug(design.name);
           window.history.pushState({}, '', `/buttons/${slug}`);
-        } else if (newView === 'documentation') {
-          window.history.pushState({}, '', '/docs');
         } else if (newView === 'showcase') {
           window.history.pushState({}, '', '/showcase');
         } else if (newView === 'pricing') {
@@ -168,6 +171,10 @@ const App: React.FC = () => {
           window.history.pushState({}, '', '/contact');
         } else if (newView === 'prokit') {
           window.history.pushState({}, '', '/prokit');
+        } else if (newView === 'packages') {
+          window.history.pushState({}, '', '/packages');
+        } else if (newView === 'guide') {
+          window.history.pushState({}, '', '/guide');
         }
         setView(newView);
         if (design) setSelectedButton(design);
@@ -181,8 +188,6 @@ const App: React.FC = () => {
       } else if (newView === 'button' && design) {
         const slug = toSlug(design.name);
         window.history.pushState({}, '', `/buttons/${slug}`);
-      } else if (newView === 'documentation') {
-        window.history.pushState({}, '', '/docs');
       } else if (newView === 'showcase') {
         window.history.pushState({}, '', '/showcase');
       } else if (newView === 'pricing') {
@@ -197,6 +202,10 @@ const App: React.FC = () => {
         window.history.pushState({}, '', '/contact');
       } else if (newView === 'prokit') {
         window.history.pushState({}, '', '/prokit');
+      } else if (newView === 'packages') {
+        window.history.pushState({}, '', '/packages');
+      } else if (newView === 'guide') {
+        window.history.pushState({}, '', '/guide');
       }
       setView(newView);
       if (design) setSelectedButton(design);
@@ -205,7 +214,19 @@ const App: React.FC = () => {
   };
 
   if (view === 'landing') {
-    return <div className="animate-fade-in"><LandingPage onExplore={() => navigateTo('buttons')} onProKit={() => navigateTo('prokit')} /></div>;
+    return (
+      <div className="animate-fade-in">
+        <LandingPage 
+          onExplore={() => navigateTo('buttons')} 
+          onProKit={() => navigateTo('prokit')}
+          onNavigateHome={() => navigateTo('landing')}
+          onNavigate={(nav) => {
+            if (nav === 'packages') navigateTo('packages');
+            else if (nav === 'guide') navigateTo('guide');
+          }}
+        />
+      </div>
+    );
   }
 
   if (view === 'button' && selectedButton) {
@@ -217,10 +238,6 @@ const App: React.FC = () => {
         />
       </div>
     );
-  }
-
-  if (view === 'documentation') {
-    return <div className="animate-fade-in"><Documentation onBack={() => navigateTo('landing')} /></div>;
   }
 
   if (view === 'showcase') {
@@ -251,14 +268,23 @@ const App: React.FC = () => {
     return <div className="animate-fade-in"><ProKit onBack={() => navigateTo('landing')} onExplore={() => navigateTo('buttons')} /></div>;
   }
 
+  if (view === 'packages') {
+    return <div className="animate-fade-in"><Packages /></div>;
+  }
+
+  if (view === 'guide') {
+    return <div className="animate-fade-in"><Guide onBack={() => navigateTo('landing')} /></div>;
+  }
+
   return (
-    <div className="min-h-screen bg-[#fdfaf5] dark:bg-[#0a0a0a]">
+    <div className="min-h-screen bg-brand-light dark:bg-brand-dark">
       <Header 
         onNavigateHome={() => navigateTo('landing')}
+        onNavigate={(viewName: string) => navigateTo(viewName as ViewType)}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-20 md:pb-32">
-        <div className="mb-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter mb-2">
               Button<span className="text-orange-500">Styles</span>
@@ -288,8 +314,9 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="sticky top-16 md:top-20 z-40 mb-12 px-1 flex justify-center">
-          <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-3xl p-1.5 rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 flex items-center gap-1 overflow-x-auto scrollbar-hide">
+        {/* Category Buttons - After Search Filter */}
+        <div className="mb-12 flex justify-center">
+          <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-3xl p-1.5 rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 flex items-center gap-1 overflow-x-auto scrollbar-hide max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}

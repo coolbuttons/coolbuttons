@@ -1,0 +1,14 @@
+{
+  "name": "coolbuttons-packages",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cool Buttons - Production-ready button components",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:all": "npm run build --workspaces",
+    "dev:all": "npm run dev --workspaces",
+    "publish:all": "npm publish --workspaces"
+  }
+}

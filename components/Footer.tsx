@@ -61,8 +61,13 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/docs" className="text-zinc-400 hover:text-orange-400 transition-colors">
-                  Documentation
+                <a href="/guide" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  Guide
+                </a>
+              </li>
+              <li>
+                <a href="/packages" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                  Packages & Usage
                 </a>
               </li>
               <li>

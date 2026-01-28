@@ -4,7 +4,7 @@ Disallow: /admin
 Disallow: /private
 
 # Sitemaps
-Sitemap: https://coolbuttons.vercel.app/sitemap.xml
+Sitemap: https://coolbuttons.dev/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 1

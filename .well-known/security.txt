@@ -1,4 +1,4 @@
 Contact: devchauhan.developer@gmail.com
 Expires: 2027-01-26T00:00:00.000Z
 Preferred-Languages: en
-Canonical: https://coolbuttons.vercel.app/.well-known/security.txt
+Canonical: https://coolbuttons.dev/.well-known/security.txt
