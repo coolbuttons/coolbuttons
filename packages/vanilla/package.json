@@ -1,6 +1,6 @@
 {
   "name": "@coolbuttons/vanilla",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "400+ production-ready button components for vanilla JavaScript",
   "license": "MIT",
   "main": "./dist/index.js",
