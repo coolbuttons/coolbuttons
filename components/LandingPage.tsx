@@ -6,7 +6,8 @@ import {
   ArrowRight, Sparkles, Layers, ShieldCheck, 
   Rocket, MousePointer2, CheckCircle2, Star, 
   MessageSquare, ChevronDown, Github, Twitter,
-  Cpu, Layout, Globe, Home, Package
+  Cpu, Layout, Globe, Home, Package,
+  Linkedin
 } from 'lucide-react';
 import Claymorphic from './buttons/Claymorphic';
 
@@ -81,19 +82,33 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onProKit }) => {
         </button>
         <div className="flex items-center gap-4 md:gap-8">
           <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-zinc-400">
-            <a href="/docs" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Docs</a>
             <a href="/guide" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Guide</a>
             <a href="/packages" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Packages</a>
             <a href="/showcase" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Showcase</a>
           </div>
           
-          {/* Desktop Explore Button */}
-          <button 
-            onClick={onExplore}
-            className="hidden md:block px-4 md:px-6 py-2 md:py-3 bg-orange-500 text-white text-[10px] font-black uppercase tracking-widest rounded-lg md:rounded-xl shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3),8px_8px_16px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 transition-all"
-          >
-            Explore
-          </button>
+          {/* Desktop Social Icons */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://github.com/coolbuttons/coolbuttons"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-zinc-800/50 rounded-lg transition-all group"
+              title="GitHub"
+            >
+              <Github className="w-5 h-5 text-zinc-400 group-hover:text-orange-500 transition-colors" />
+            </a>
+            <a
+              href="https://linkedin.com/company/coolbuttons"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-zinc-800/50 rounded-lg transition-all group"
+              title="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5 text-zinc-400 group-hover:text-orange-500 transition-colors" />
+            </a>
+          </div>
+
 
           {/* Mobile Hamburger Menu Button */}
           <button 
@@ -164,7 +179,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onProKit }) => {
 
             {/* External Links */}
             <a
-              href="https://github.com"
+              href="https://github.com/coolbuttons"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-zinc-300 hover:text-orange-500 hover:bg-zinc-900/50 transition-all w-full text-left"
@@ -174,13 +189,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onProKit }) => {
             </a>
 
             <a
-              href="https://twitter.com"
+              href="https://linkedin.com/company/coolbuttons"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-zinc-300 hover:text-orange-500 hover:bg-zinc-900/50 transition-all w-full text-left"
             >
-              <Twitter className="w-5 h-5" />
-              <span>Twitter</span>
+              <Linkedin className="w-5 h-5" />
+              <span>LinkedIn</span>
             </a>
           </div>
         </div>

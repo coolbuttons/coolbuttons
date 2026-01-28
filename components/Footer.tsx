@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/5 pt-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-zinc-500">
-              © 2026 Cool Buttons. All rights reserved. | Made with ❤️
+              © 2026 Cool Buttons. All rights reserved. 
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs">
               <a href="/about" className="text-zinc-400 hover:text-orange-400 transition-colors">

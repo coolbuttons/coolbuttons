@@ -1,10 +1,73 @@
+# Cool Buttons robots.txt
+# Allow search engines to index the site while protecting sensitive areas
+
+# Default rule for all robots
 User-agent: *
 Allow: /
+Allow: /buttons
+Allow: /guide
+Allow: /showcase
+Allow: /pricing
+Allow: /about
+
+# Disallow private areas
 Disallow: /admin
 Disallow: /private
+Disallow: /internal
+Disallow: /.git
+Disallow: /.github
+Disallow: /node_modules
+Disallow: /src
+Disallow: /dist
+Disallow: /build
+Disallow: /tmp
+Disallow: /temp
+
+# Disallow duplicate/generated content
+Disallow: /*?*
+Disallow: /*sort=
+Disallow: /*filter=
+Disallow: /*page=*&
+Disallow: /*preview=
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Disallow bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Crawl delay for general bots
+Crawl-delay: 1
+Request-rate: 1/10s
 
 # Sitemaps
 Sitemap: https://coolbuttons.dev/sitemap.xml
+Sitemap: https://coolbuttons.dev/sitemap-buttons.xml
 
-# Crawl delay (optional)
-Crawl-delay: 1
+# Allow well-behaved bots
+User-agent: *
+Allow: *.css$
+Allow: *.js$
+Allow: *.jpg$
+Allow: *.jpeg$
+Allow: *.png$
+Allow: *.gif$
+Allow: *.svg$
+Allow: *.webp$

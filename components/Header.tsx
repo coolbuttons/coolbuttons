@@ -152,7 +152,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigate }) => {
 
             {/* External Links */}
             <a
-              href="https://github.com"
+              href="https://github.com/coolbuttons/coolbuttons"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-zinc-300 hover:text-orange-500 hover:bg-zinc-900/50 transition-all"
@@ -164,7 +164,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigate }) => {
             </a>
 
             <a
-              href="https://twitter.com"
+              href="https://twitter.com/devchauhann3"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-zinc-300 hover:text-orange-500 hover:bg-zinc-900/50 transition-all"
