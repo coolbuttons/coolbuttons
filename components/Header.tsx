@@ -22,7 +22,18 @@ const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigate }) => {
         {/* Navbar */}
         <nav className="relative z-50 flex items-center justify-between px-6 py-4 md:py-6 max-w-7xl mx-auto">
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => {
+              // Check if we're on a button detail page (contains /buttons/ or /category/)
+              const currentPath = window.location.pathname;
+              if (currentPath.includes('/buttons/') || currentPath.includes('/category/')) {
+                // Go to /all first, then home
+                window.location.href = '/buttons/all';
+              } else {
+                // Otherwise go directly to home
+                window.location.href = '/';
+              }
+              window.scrollTo(0, 0);
+            }}
             className="flex items-center gap-1 md:gap-2 cursor-pointer hover:opacity-80 transition-opacity"
           >
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl shadow-xl overflow-hidden">
