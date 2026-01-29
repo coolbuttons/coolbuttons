@@ -8,27 +8,24 @@ interface ButtonDetailProps {
   onBack: () => void;
 }
 
-type CodeTab = 'tailwind' | 'react' | 'css';
+type CodeTab = 'tailwind' | 'react' | 'html' | 'css' | 'javascript';
 
 const ButtonDetail: React.FC<ButtonDetailProps> = ({ design, onBack }) => {
   const [activeTab, setActiveTab] = useState<CodeTab>('tailwind');
   const [copied, setCopied] = useState(false);
 
-  const getTypeScriptCode = () => {
-    if (design.typescript) return design.typescript;
-    return `import React from 'react';\n\nconst MyButton = () => (\n  ${design.code.split('\n').join('\n  ')}\n);\n\nexport default MyButton;`;
-  };
-
-  const getCSSCode = () => {
-    if (design.css) return design.css;
-    return `.btn-${design.id} {\n  display: inline-flex;\n  align-items: center;\n  padding: 0.75rem 1.5rem;\n  border-radius: 0.5rem;\n  transition: all 0.3s;\n}`;
-  };
-
   const getActiveCode = () => {
     switch (activeTab) {
-      case 'react': return getTypeScriptCode();
-      case 'css': return getCSSCode();
-      default: return design.code;
+      case 'react': 
+        return design.react || design.code;
+      case 'html': 
+        return design.html || design.code;
+      case 'css': 
+        return design.css || `.btn-${design.id} {\n  display: inline-flex;\n  align-items: center;\n  padding: 0.75rem 1.5rem;\n  border-radius: 0.5rem;\n  transition: all 0.3s;\n}`;
+      case 'javascript': 
+        return design.javascript || `// JavaScript implementation for ${design.name}`;
+      default: 
+        return design.tailwind || design.code;
     }
   };
 
@@ -101,9 +98,11 @@ const ButtonDetail: React.FC<ButtonDetailProps> = ({ design, onBack }) => {
               {/* Language Selector */}
               <div className="flex gap-2 flex-wrap">
                 {[
-                  { id: 'tailwind', label: 'Tailwind' },
+                  { id: 'tailwind', label: 'Tailwind CSS' },
                   { id: 'react', label: 'React' },
-                  { id: 'css', label: 'CSS' }
+                  { id: 'html', label: 'HTML' },
+                  { id: 'css', label: 'CSS' },
+                  { id: 'javascript', label: 'JavaScript' }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -131,7 +130,7 @@ const ButtonDetail: React.FC<ButtonDetailProps> = ({ design, onBack }) => {
                     <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                   </div>
                   <span className="text-xs text-zinc-500 font-mono ml-2">
-                    {design.id}.{activeTab === 'css' ? 'css' : activeTab === 'react' ? 'tsx' : 'jsx'}
+                    {design.id}.{activeTab === 'css' ? 'css' : activeTab === 'react' ? 'tsx' : activeTab === 'html' ? 'html' : activeTab === 'javascript' ? 'js' : 'jsx'}
                   </span>
                 </div>
                 <button

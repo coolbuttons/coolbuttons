@@ -17,7 +17,6 @@ import { design as neumorphicSoft } from '../components/buttons/NeumorphicSoft';
 import { design as glassFusion } from '../components/buttons/GlassFusion';
 import { design as glassRefraction } from '../components/buttons/GlassRefraction';
 import { design as sapphireSlab } from '../components/buttons/GlassCard';
-import { design as crystalPrism } from '../components/buttons/GlassRefraction';
 import { design as amberVitrum } from '../components/buttons/GlassInset';
 import { design as bigRed } from '../components/buttons/RubberPress';
 import { design as leatherPress } from '../components/buttons/LeatherStitch';
@@ -81,7 +80,6 @@ export const buttonLibrary: ButtonDesign[] = [
   glassFusion,
   glassRefraction,
   sapphireSlab,
-  crystalPrism,
   amberVitrum,
   bigRed,
   leatherPress,
