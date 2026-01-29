@@ -15,6 +15,7 @@ import Contact from './components/Contact';
 import ProKit from './components/ProKit';
 import Packages from './components/Packages';
 import Guide from './components/Guide';
+import License from './components/License';
 import { buttonLibrary } from './data/buttonLib';
 import { ButtonDesign, ButtonCategory } from './types';
 import { Search, Command, ChevronDown } from 'lucide-react';
@@ -33,7 +34,7 @@ const findButtonBySlug = (slug: string): ButtonDesign | null => {
   return buttonLibrary.find(btn => toSlug(btn.name) === slug) || null;
 };
 
-type ViewType = 'landing' | 'buttons' | 'button' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit' | 'packages' | 'guide';
+type ViewType = 'landing' | 'buttons' | 'button' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit' | 'packages' | 'guide' | 'license';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewType>('landing');
@@ -101,6 +102,8 @@ const App: React.FC = () => {
         setView('packages');
       } else if (segments[0] === 'guide') {
         setView('guide');
+      } else if (segments[0] === 'license') {
+        setView('license');
       }
       window.scrollTo(0, 0);
     };
@@ -175,6 +178,8 @@ const App: React.FC = () => {
           window.history.pushState({}, '', '/packages');
         } else if (newView === 'guide') {
           window.history.pushState({}, '', '/guide');
+        } else if (newView === 'license') {
+          window.history.pushState({}, '', '/license');
         }
         setView(newView);
         if (design) setSelectedButton(design);
@@ -206,6 +211,8 @@ const App: React.FC = () => {
         window.history.pushState({}, '', '/packages');
       } else if (newView === 'guide') {
         window.history.pushState({}, '', '/guide');
+      } else if (newView === 'license') {
+        window.history.pushState({}, '', '/license');
       }
       setView(newView);
       if (design) setSelectedButton(design);
@@ -274,6 +281,10 @@ const App: React.FC = () => {
 
   if (view === 'guide') {
     return <div className="animate-fade-in"><Guide onBack={() => navigateTo('landing')} /></div>;
+  }
+
+  if (view === 'license') {
+    return <div className="animate-fade-in"><License /></div>;
   }
 
   return (

@@ -31,6 +31,7 @@ jobs:
         package:
           - packages/react
           - packages/vanilla
+          - packages/coolbuttons
       fail-fast: false
 
     steps:
@@ -82,6 +83,7 @@ jobs:
         package:
           - '@coolbuttons/react'
           - '@coolbuttons/vanilla'
+          - 'coolbuttons'
 
     steps:
       - name: Verify ${{ matrix.package }} on npm

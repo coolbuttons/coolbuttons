@@ -13,7 +13,7 @@ const Pricing: React.FC<PricingProps> = ({ onBack }) => {
       price: '$0',
       description: 'Perfect for getting started',
       features: [
-        '100+ button designs',
+        'Button designs',
         'Copy & paste code',
         'Tailwind CSS',
         'React components',
@@ -29,7 +29,7 @@ const Pricing: React.FC<PricingProps> = ({ onBack }) => {
       description: 'For professional developers',
       features: [
         'All Free features',
-        '400+ button designs',
+        'More button designs',
         'Advanced animations',
         'Premium templates',
         'Priority support',

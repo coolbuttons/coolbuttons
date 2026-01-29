@@ -1,6 +1,6 @@
 # @coolbuttons/react
 
-> A comprehensive collection of 200+ beautifully crafted React button components with TypeScript support.
+> A comprehensive collection of beautifully crafted React button components with TypeScript support.
 
 [![npm version](https://img.shields.io/npm/v/@coolbuttons/react.svg)](https://www.npmjs.com/package/@coolbuttons/react)
 [![npm downloads](https://img.shields.io/npm/dm/@coolbuttons/react.svg)](https://www.npmjs.com/package/@coolbuttons/react)

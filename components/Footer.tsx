@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-bold text-lg text-white mb-3">Cool Buttons</h3>
             <p className="text-sm text-zinc-400 leading-relaxed">
-              400+ beautifully designed button components. Copy, paste, and customize with ease.
+              Beautifully designed button components. Copy, paste, and customize with ease.
             </p>
           </div>
 
@@ -125,8 +125,11 @@ const Footer: React.FC = () => {
               <a href="/contact" className="text-zinc-400 hover:text-orange-400 transition-colors">
                 Contact
               </a>
-              <a href="https://github.com/devchauhann" className="text-zinc-400 hover:text-orange-400 transition-colors" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/coolbuttons/coolbuttons" className="text-zinc-400 hover:text-orange-400 transition-colors" target="_blank" rel="noopener noreferrer">
                 GitHub
+              </a>
+              <a href="/license" className="text-zinc-400 hover:text-orange-400 transition-colors">
+                License
               </a>
               <a href="/privacy" className="text-zinc-400 hover:text-orange-400 transition-colors">
                 Privacy Policy

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonDesign, ButtonCategory } from '../types';
+import { ButtonDesign, ButtonCategory } from '../../../../types';
 
 const RubberPress: React.FC = () => {
   return (

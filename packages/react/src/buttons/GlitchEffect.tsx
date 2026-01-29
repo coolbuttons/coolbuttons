@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ButtonDesign, ButtonCategory } from '../types';
+import { ButtonDesign, ButtonCategory } from '../../../../types';
 
 const GlitchEffect: React.FC = () => {
   return (

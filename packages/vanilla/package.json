@@ -1,7 +1,7 @@
 {
   "name": "@coolbuttons/vanilla",
-  "version": "1.0.1",
-  "description": "400+ production-ready button components for vanilla JavaScript",
+  "version": "1.0.3",
+  "description": "Production-ready button components for vanilla JavaScript",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -38,10 +38,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/devchauhann/coolbuttons.git"
+    "url": "https://github.com/coolbuttons/coolbuttons.git"
   },
   "bugs": {
-    "url": "https://github.com/devchauhann/coolbuttons/issues"
+    "url": "https://github.com/coolbuttons/coolbuttons/issues"
   },
   "homepage": "https://coolbuttons.dev"
 }
