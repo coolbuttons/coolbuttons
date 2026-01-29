@@ -1,15 +1,17 @@
 {
   "name": "@coolbuttons/vanilla",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Production-ready button components for vanilla JavaScript",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
+  "unpkg": "./dist/coolbuttons.min.js",
+  "jsdelivr": "./dist/coolbuttons.min.js",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
-      "require": "./dist/index.js",
+      "require": "./dist/index.umd.js",
       "types": "./dist/index.d.ts"
     }
   },

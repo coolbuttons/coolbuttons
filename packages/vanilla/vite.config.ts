@@ -5,8 +5,21 @@ export default {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'CoolButtonsVanilla',
-      formats: ['es', 'umd'],
-      fileName: (format) => `index${format === 'es' ? '.esm' : ''}.js`,
+      formats: ['es', 'umd', 'iife'],
+      fileName: (format) => {
+        if (format === 'es') return 'index.esm.js';
+        if (format === 'umd') return 'index.umd.js';
+        if (format === 'iife') return 'coolbuttons.min.js';
+        return `index${format === 'es' ? '.esm' : ''}.js`;
+      }
     },
+    rollupOptions: {
+      output: {
+        // For IIFE format (CDN)
+        globals: {
+          // Add global variable mappings if needed
+        }
+      }
+    }
   },
 };

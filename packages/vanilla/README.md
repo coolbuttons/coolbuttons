@@ -36,6 +36,54 @@ pnpm add @coolbuttons/vanilla
 
 ## 🚀 Quick Start
 
+### CDN Usage (Easiest)
+
+Simply add a script tag to your HTML file:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cool Buttons</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Add Cool Buttons from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@coolbuttons/vanilla@1.0.5/dist/coolbuttons.min.js"></script>
+  
+  <script>
+    // Access CoolButtonsVanilla global object
+    const { CoolButton } = window.CoolButtonsVanilla;
+    
+    // Create a button
+    const button = new CoolButton({
+      text: 'Click Me!',
+      className: 'flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all',
+      onClick: () => alert('Button clicked!'),
+    });
+    
+    // Mount to DOM
+    document.getElementById('app').appendChild(button.getElement());
+  </script>
+</body>
+</html>
+```
+
+### NPM Installation
+
+```bash
+npm install @coolbuttons/vanilla
+# or
+yarn add @coolbuttons/vanilla
+# or
+pnpm add @coolbuttons/vanilla
+```
+
+**No other dependencies required!**
+
+---
+
 ### Basic Usage with Factory Function
 
 ```javascript
