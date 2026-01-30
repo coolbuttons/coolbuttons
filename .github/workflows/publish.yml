@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
       id-token: write
 
     steps:
@@ -36,26 +35,28 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Publish to npm
+      - name: Publish packages to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          set -e
+
           echo "Publishing @coolbuttons/react..."
           cd packages/react
-          npm publish --access=public
-          cd ../..
-          
-          echo "Publishing @coolbuttons/vanilla..."
-          cd packages/vanilla
-          npm publish --access=public
-          cd ../..
-          
-          echo "Publishing coolbuttons..."
-          cd packages/coolbuttons
-          npm publish --access=public
+          npm publish --access public
           cd ../..
 
-      - name: Create Release
+          echo "Publishing @coolbuttons/vanilla..."
+          cd packages/vanilla
+          npm publish --access public
+          cd ../..
+
+          echo "Publishing coolbuttons..."
+          cd packages/coolbuttons
+          npm publish --access public
+          cd ../..
+
+      - name: Create GitHub Release
         if: success()
         uses: softprops/action-gh-release@v1
         with:
@@ -66,7 +67,5 @@ jobs:
             - @coolbuttons/react
             - @coolbuttons/vanilla
             - coolbuttons
-          draft: false
-          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
