@@ -1,186 +1,106 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { Mail, Github } from 'lucide-react';
+import Header from './Header';
 import Footer from './Footer';
 
-interface ContactProps {
-  onBack: () => void;
-}
-
-const Contact: React.FC<ContactProps> = ({ onBack }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
+const Contact: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* Header */}
-      <div className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-zinc-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-          <button 
-            onClick={onBack}
-            className="flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors group"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Back</span>
-          </button>
+    <>
+      <Header onNavigateHome={() => window.location.href = '/'} />
+      <div className="min-h-screen bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-brand-light selection:bg-orange-500 selection:text-white overflow-x-hidden">
+        {/* Dynamic Background */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-orange-500/[0.03] blur-[120px] rounded-full animate-pulse"></div>
+          <div className="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] bg-indigo-500/[0.03] blur-[120px] rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute inset-0 grid-bg opacity-30"></div>
         </div>
+
+        <main className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          {/* Header Section */}
+          <div className="text-center mb-20">
+            <h1 className="text-6xl sm:text-7xl font-bold mb-6">Get in Touch</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              Have questions, feedback, or want to collaborate? We'd love to hear from you. Reach out and let's connect.
+            </p>
+          </div>
+
+          {/* Contact Methods - Simple Text */}
+          <div className="space-y-12">
+            {/* Email */}
+            <div className="text-center">
+              <div className="flex flex-col gap-4 items-center">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-6 h-6 text-orange-500" />
+                  <a 
+                    href="mailto:devchauhan.developer@gmail.com" 
+                    className="text-lg text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
+                  >
+                    devchauhan.developer@gmail.com
+                  </a>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Response time: 24 hours</p>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="text-center">
+              <p className="text-gray-600 dark:text-gray-400 mb-8 font-medium text-lg">Follow us</p>
+              <div className="flex justify-center gap-2">
+                <a 
+                  href="https://github.com/coolbuttons/coolbuttons" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 hover:text-orange-500 text-gray-700 dark:text-gray-300 transition-colors"
+                  title="GitHub"
+                >
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a 
+                  href="https://x.com/devchauhann3" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 hover:text-orange-500 text-gray-700 dark:text-gray-300 transition-colors"
+                  title="X (Twitter)"
+                >
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L5.551 21.75H2.232l7.73-8.835L1.456 2.25h6.556l4.702 6.217 5.534-6.217zM17.002 18.807h1.83L6.822 4.1H4.881l12.121 14.707z" />
+                  </svg>
+                </a>
+                <a 
+                  href="https://www.npmjs.com/org/coolbuttons" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 hover:text-orange-500 text-gray-700 dark:text-gray-300 transition-colors"
+                  title="NPM"
+                >
+                  <svg className="w-8 h-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
+                    <g fillRule="nonzero">
+                      <path d="M10.999 500.999v-490h490v490h-490z" fill="red"/>
+                      <path d="M102.874 102.874h306.25v306.25h-61.25v-245h-91.875v245H102.874v-306.25z" fill="white"/>
+                    </g>
+                  </svg>
+                </a>
+                <a 
+                  href="https://linkedin.com/company/coolbuttons" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 hover:text-orange-500 text-blue-700 dark:text-gray-300 transition-colors"
+                  title="LinkedIn"
+                >
+                  <svg className="w-8 h-8" fill="white" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.738-2.002 1.45-.103.252-.129.604-.129.957v5.398h-3.554s.047-8.745 0-9.649h3.554v1.366c.43-.664 1.199-1.608 2.818-1.608 2.059 0 3.602 1.344 3.602 4.227v5.664zM5.337 9.433c-1.144 0-1.915-.758-1.915-1.706 0-.955.771-1.71 1.971-1.71 1.199 0 1.914.754 1.939 1.71 0 .948-.74 1.706-1.995 1.706zm1.946 11.019H3.39V9.804h3.893v10.648zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <Footer />
       </div>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <h1 className="text-5xl font-black mb-4">Get in Touch</h1>
-          <p className="text-zinc-400 text-lg">Have questions or feedback? We'd love to hear from you.</p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Contact Info Cards */}
-          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
-            <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4">
-              <Mail className="text-orange-500" size={24} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Email</h3>
-            <p className="text-zinc-400">Send us an email anytime</p>
-            <a href="mailto:devchauhan.developer@gmail.com" className="text-orange-500 font-semibold mt-2 hover:text-orange-400">
-              devchauhan.developer@gmail.com
-            </a>
-          </div>
-
-          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
-            <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4">
-              <Phone className="text-orange-500" size={24} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Support</h3>
-            <p className="text-zinc-400">Response time: 24 hours</p>
-            <p className="text-orange-500 font-semibold mt-2">Available on GitHub</p>
-          </div>
-
-          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
-            <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4">
-              <MapPin className="text-orange-500" size={24} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Social</h3>
-            <p className="text-zinc-400">Follow us online</p>
-            <div className="flex gap-3 mt-3">
-              <a href="#" className="text-orange-500 hover:text-orange-400">GitHub</a>
-              <a href="#" className="text-orange-500 hover:text-orange-400">Twitter</a>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="max-w-2xl mx-auto bg-gradient-to-br from-zinc-900/50 to-black border border-zinc-800 rounded-2xl p-8">
-          <h2 className="text-2xl font-black mb-8">Send us a Message</h2>
-          
-          {submitted ? (
-            <div className="flex flex-col items-center justify-center py-12">
-              <CheckCircle className="text-green-500 mb-4" size={48} />
-              <h3 className="text-xl font-bold mb-2">Thank you!</h3>
-              <p className="text-zinc-400">We've received your message and will get back to you soon.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-2">Subject</label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white"
-                  placeholder="What is this about?"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-2">Message</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white resize-none"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-2"
-              >
-                <Send size={18} />
-                Send Message
-              </button>
-            </form>
-          )}
-        </div>
-
-        {/* FAQ Section */}
-        <div className="mt-16 max-w-2xl mx-auto">
-          <h2 className="text-2xl font-black mb-8">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              { q: 'How quickly will I get a response?', a: 'We typically respond within 24 hours during business days.' },
-              { q: 'Can I report bugs or suggest features?', a: 'Absolutely! We encourage feedback. Please use our GitHub issues or contact us directly.' },
-              { q: 'Do you offer custom button designs?', a: 'Yes, for enterprise clients. Please mention this in your message.' },
-              { q: 'How can I contribute to the project?', a: 'Check out our GitHub repository and feel free to submit pull requests!' }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                <h3 className="font-bold mb-2">{item.q}</h3>
-                <p className="text-zinc-400">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    </>
   );
 };
 

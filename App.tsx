@@ -16,9 +16,12 @@ import ProKit from './components/ProKit';
 import Packages from './components/Packages';
 import Guide from './components/Guide';
 import License from './components/License';
+import NotFound from './components/NotFound';
+import NoConnection from './components/NoConnection';
 import { buttonLibrary } from './data/buttonLib';
 import { ButtonDesign, ButtonCategory } from './types';
 import { Search, Command, ChevronDown } from 'lucide-react';
+import { registerServiceWorker, monitorConnectionStatus, recordPageVisit } from './utils/offlineUtils';
 
 // Helper function to convert button name to URL slug
 const toSlug = (name: string): string => {
@@ -34,7 +37,7 @@ const findButtonBySlug = (slug: string): ButtonDesign | null => {
   return buttonLibrary.find(btn => toSlug(btn.name) === slug) || null;
 };
 
-type ViewType = 'landing' | 'buttons' | 'button' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit' | 'packages' | 'guide' | 'license';
+type ViewType = 'landing' | 'buttons' | 'button' | 'showcase' | 'pricing' | 'about' | 'terms' | 'privacy' | 'contact' | 'prokit' | 'packages' | 'guide' | 'license' | 'not-found' | 'no-connection';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewType>('landing');
@@ -104,6 +107,11 @@ const App: React.FC = () => {
         setView('guide');
       } else if (segments[0] === 'license') {
         setView('license');
+      } else if (segments[0] === 'offline') {
+        setView('no-connection');
+      } else {
+        // Unknown route - show 404
+        setView('not-found');
       }
       window.scrollTo(0, 0);
     };
@@ -124,6 +132,24 @@ const App: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Initialize service worker and offline storage
+  useEffect(() => {
+    // Register service worker for offline support
+    registerServiceWorker();
+
+    // Monitor connection status
+    monitorConnectionStatus((isOnline) => {
+      if (!isOnline) {
+        // Navigate to no-connection page when offline
+        window.history.pushState({}, '', '/offline');
+        setView('no-connection');
+      }
+    });
+
+    // Record initial page visit
+    recordPageVisit('landing');
   }, []);
 
   const filteredButtons = useMemo(() => {
@@ -285,6 +311,14 @@ const App: React.FC = () => {
 
   if (view === 'license') {
     return <div className="animate-fade-in"><License /></div>;
+  }
+
+  if (view === 'not-found') {
+    return <div className="animate-fade-in"><NotFound /></div>;
+  }
+
+  if (view === 'no-connection') {
+    return <div className="animate-fade-in"><NoConnection /></div>;
   }
 
   return (
