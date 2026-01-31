@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ChevronRight, Zap } from 'lucide-react';
-import { ButtonDesign, ButtonCategory } from '../../types';
+import { ButtonDesign, ButtonCategory } from '../../../../types';
 
 const BentoBox: React.FC = () => {
   return (

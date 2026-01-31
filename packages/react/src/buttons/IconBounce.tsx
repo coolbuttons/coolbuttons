@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Zap } from 'lucide-react';
-import { ButtonDesign, ButtonCategory } from '../../types';
+import { ButtonDesign, ButtonCategory } from '../../../../types';
 
 const IconBounce: React.FC = () => {
   return (

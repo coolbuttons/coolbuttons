@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { ButtonDesign, ButtonCategory } from '../../types';
+import { ButtonDesign, ButtonCategory } from '../../../../types';
 
 const ChevronExpand: React.FC = () => {
   return (
