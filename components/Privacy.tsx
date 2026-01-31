@@ -1,26 +1,15 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import Header from './Header';
 import Footer from './Footer';
 
 interface PrivacyProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
 const Privacy: React.FC<PrivacyProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* Header */}
-      <div className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-zinc-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-          <button 
-            onClick={onBack}
-            className="flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors group"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Back</span>
-          </button>
-        </div>
-      </div>
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12">

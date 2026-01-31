@@ -18,7 +18,6 @@ export const registerServiceWorker = async () => {
       const registration = await navigator.serviceWorker.register('/sw.js', {
         scope: '/'
       });
-      console.log('[App] Service Worker registered successfully:', registration);
 
       // Check for updates periodically
       setInterval(() => {
@@ -27,12 +26,12 @@ export const registerServiceWorker = async () => {
 
       // Listen for controller change (new SW activated)
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        console.log('[App] Service Worker updated');
+        // Service Worker updated
       });
 
       return registration;
     } catch (error) {
-      console.error('[App] Service Worker registration failed:', error);
+      // Service Worker registration failed silently
     }
   }
 };
@@ -55,9 +54,8 @@ export const storeOfflineData = (data: OfflineData) => {
     }
 
     localStorage.setItem(offlineDataKey, JSON.stringify(dataArray));
-    console.log('[Offline Storage] Data stored:', data);
   } catch (error) {
-    console.error('[Offline Storage] Failed to store data:', error);
+    // Failed to store data silently
   }
 };
 
@@ -70,7 +68,6 @@ export const getOfflineData = (): OfflineData[] => {
     const data = localStorage.getItem(offlineDataKey);
     return data ? JSON.parse(data) : [];
   } catch (error) {
-    console.error('[Offline Storage] Failed to retrieve data:', error);
     return [];
   }
 };
@@ -81,9 +78,8 @@ export const getOfflineData = (): OfflineData[] => {
 export const clearOfflineData = () => {
   try {
     localStorage.removeItem('coolbuttons_offline_data');
-    console.log('[Offline Storage] Offline data cleared');
   } catch (error) {
-    console.error('[Offline Storage] Failed to clear data:', error);
+    // Failed to clear data silently
   }
 };
 
@@ -92,14 +88,12 @@ export const clearOfflineData = () => {
  */
 export const monitorConnectionStatus = (onStatusChange?: (isOnline: boolean) => void) => {
   const handleOnline = () => {
-    console.log('[Connection] Back online');
     onStatusChange?.(true);
     // Sync any pending data
     syncOfflineData();
   };
 
   const handleOffline = () => {
-    console.log('[Connection] Went offline');
     onStatusChange?.(false);
   };
 
@@ -119,23 +113,19 @@ export const syncOfflineData = async () => {
   const data = getOfflineData();
   
   if (data.length === 0) {
-    console.log('[Offline Storage] No data to sync');
     return;
   }
 
   try {
     // Simulate sync (in real app, send to server)
-    console.log('[Offline Storage] Syncing', data.length, 'items');
     
     // Store sync timestamp
     localStorage.setItem('coolbuttons_last_sync', new Date().toISOString());
     
     // Clear synced data
     clearOfflineData();
-    
-    console.log('[Offline Storage] Sync complete');
   } catch (error) {
-    console.error('[Offline Storage] Sync failed:', error);
+    // Sync failed silently
   }
 };
 
@@ -147,7 +137,6 @@ export const getLastSyncTime = (): Date | null => {
     const timestamp = localStorage.getItem('coolbuttons_last_sync');
     return timestamp ? new Date(timestamp) : null;
   } catch (error) {
-    console.error('[Offline Storage] Failed to get sync time:', error);
     return null;
   }
 };
