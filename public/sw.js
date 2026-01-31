@@ -1,114 +1,110 @@
-const CACHE_NAME = 'coolbuttons-v1';
+/* =====================================================
+   CoolButtons Service Worker (Optimized + Safe)
+   ===================================================== */
+
+const CACHE_NAME = 'coolbuttons-v2';
 const OFFLINE_PAGE = '/offline';
 
-// Assets to cache on install
+// Only cache your own critical pages
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/offline'
+  OFFLINE_PAGE
 ];
 
+/* ================= INSTALL ================= */
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching static assets');
       return cache.addAll(STATIC_ASSETS);
     })
   );
+
   self.skipWaiting();
 });
 
+
+/* ================= ACTIVATE ================= */
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('[Service Worker] Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
           }
         })
-      );
-    })
+      )
+    )
   );
+
   self.clients.claim();
 });
 
+
+/* ================= FETCH ================= */
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
+  const req = event.request;
+
+  // Only handle GET
+  if (req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+
+  /* =====================================================
+     🚨 MOST IMPORTANT FIX
+     Skip ALL third-party domains
+     (Google Tag Manager, Analytics, fonts, cdn, esm, etc)
+     ===================================================== */
+  if (url.origin !== self.location.origin) {
     return;
   }
 
-  // Handle navigation requests
-  if (event.request.mode === 'navigate') {
+  /* =================
+     HTML Navigation
+     Network-first
+     ================= */
+  if (req.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Clone response before using it for caching
-          if (response.ok) {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          }
-          return response;
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+          return res;
         })
-        .catch(() => {
-          // Return cached version or offline page
-          return caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || caches.match(OFFLINE_PAGE);
-          });
+        .catch(async () => {
+          return (
+            (await caches.match(req)) ||
+            (await caches.match(OFFLINE_PAGE))
+          );
         })
     );
     return;
   }
 
-  // Handle API and asset requests with cache-first strategy
+  /* =================
+     Static Assets
+     Cache-first
+     ================= */
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+    caches.match(req).then((cached) => {
+      if (cached) return cached;
 
-      return fetch(event.request)
-        .then((response) => {
-          // Don't cache non-200 responses
-          if (!response || response.status !== 200) {
-            return response;
-          }
+      return fetch(req).then((res) => {
+        if (!res || res.status !== 200) return res;
 
-          // Clone the response for caching
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
-
-          return response;
-        })
-        .catch(() => {
-          // Return cached version if available
-          return caches.match(event.request);
-        });
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+        return res;
+      });
     })
   );
 });
 
-// Store analytics data when offline
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-analytics') {
-    event.waitUntil(
-      self.registration.showNotification('Cool Buttons', {
-        body: 'Your data has been synced when connection restored!',
-        icon: '/icon.png'
-      })
-    );
-  }
-});
 
-// Handle messages from clients
+/* ================= MESSAGES ================= */
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+  if (event.data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 });
