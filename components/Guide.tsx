@@ -250,8 +250,8 @@ export default function Advanced() {
   return (
     <NeonBorder
       className="px-8 py-4 text-lg"
-      onClick={(e) => console.log('Click:', e)}
-      onMouseEnter={() => console.log('Entered')}
+      onClick={(e) => handleClick(e)}
+      onMouseEnter={() => handleMouseEnter()}
     >
       Interactive Button
     </NeonBorder>
@@ -265,8 +265,8 @@ export default function Advanced() {
   return (
     <NeonBorder
       className="px-8 py-4 text-lg"
-      onClick={(e) => console.log('Click:', e)}
-      onMouseEnter={() => console.log('Entered')}
+      onClick={(e) => handleClick(e)}
+      onMouseEnter={() => handleMouseEnter()}
     >
       Interactive Button
     </NeonBorder>
@@ -280,8 +280,8 @@ export default function Advanced() {
   return (
     <NeonBorder
       className="px-8 py-4 text-lg"
-      onClick={(e) => console.log('Click:', e)}
-      onMouseEnter={() => console.log('Entered')}
+      onClick={(e) => handleClick(e)}
+      onMouseEnter={() => handleMouseEnter()}
     >
       Interactive Button
     </NeonBorder>
